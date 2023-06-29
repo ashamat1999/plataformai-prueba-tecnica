@@ -1,10 +1,18 @@
 from chalice import Chalice
+from chalicelib.models.models import UnitMeasure
+from chalicelib.helpers.AuroraConector import AuroraConector
+
 
 app = Chalice(app_name='plataformai-prueba')
 
-@app.route('/')
-def index():
-    return {'hello': 'world'}
+@app.route('/unit_measures', methods=['GET'])
+def get_unit_measures():
+    connector = AuroraConector()
+    conexion = connector.create_engine()
+    sesion = connector.create_session(conexion)
+
+    select = sesion.query(UnitMeasure).all()
+    return select
 
 
 # The view function above will return {"hello": "world"}
