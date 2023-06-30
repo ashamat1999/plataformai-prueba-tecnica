@@ -49,7 +49,7 @@ def post_product():
 
     rsp = {
         'message':'Producto creado con éxito.',
-        'status_code': 5
+        'status_code': 10
     }
 
     return rsp
@@ -68,7 +68,7 @@ def delete_product(product):
 
     rsp = {
         'message':f'Producto eliminado.',
-        'status_code': 6
+        'status_code': 11
     }
 
     return rsp
@@ -88,14 +88,14 @@ def patch_product(product):
     except KeyError:
         rsp = {
             'message':f'Error de llaves de json.',
-            'status_code': 7
+            'status_code': 12
         }
 
         return rsp, 403
     except BaseException:
         rsp = {
             'message':f'Error interno.',
-            'status_code': 8
+            'status_code': 13
         }
 
         return rsp,500
@@ -104,7 +104,7 @@ def patch_product(product):
 
     rsp = {
         'message':f'Producto actualizado.',
-        'status_code': 9
+        'status_code': 14
     }
 
     return rsp

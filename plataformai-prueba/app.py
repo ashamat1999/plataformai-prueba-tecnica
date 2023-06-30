@@ -4,10 +4,12 @@ from chalicelib.helpers.AuroraConector import AuroraConector
 from sqlalchemy import select, delete, update
 from chalicelib.routes.measures_routes import unitMeasuresBlue
 from chalicelib.routes.products_routes import productsBlue
+from chalicelib.routes.sales_routes import salesBlue
 
 app = Chalice(app_name='plataformai-prueba')
 app.register_blueprint(unitMeasuresBlue, url_prefix='/measures')
 app.register_blueprint(productsBlue)
+app.register_blueprint(salesBlue)
 
 
 
