@@ -1,9 +1,15 @@
 from sqlalchemy import Column, Integer, String, Numeric, ForeignKey, Date
 from sqlalchemy.orm import declarative_base
 
+"""
+Class to define each sqlalchemy model from each table of DDBB.
+"""
 Base = declarative_base()
 
 class UnitMeasure(Base):
+    """
+    UnitMeasure class to define measures table model.
+    """
     __tablename__ = 'UnitMeasure'
 
     unit_measure_id = Column(Integer(), primary_key=True)
@@ -14,6 +20,9 @@ class UnitMeasure(Base):
 
 
 class Products(Base):
+    """
+    Products class to define products table model.
+    """
     __tablename__ = 'Products'
 
     product_name = Column(String(), primary_key=True)
@@ -25,6 +34,9 @@ class Products(Base):
 
 
 class Sales(Base):
+    """
+    Sales class to define sales table model.
+    """
     __tablename__ = 'Sales'
 
     sale_id = Column(Numeric(), primary_key=True)

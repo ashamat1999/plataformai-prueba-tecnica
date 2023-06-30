@@ -7,6 +7,17 @@ productsBlue = Blueprint(__name__)
 
 @productsBlue.route('/products', methods=['GET'])
 def get_products():
+    """
+    Function to define GET products endpoint.
+
+    params
+    -
+    body
+    -
+
+    returns
+     - resp: select JSON formatted answered query.
+    """
     connector = AuroraConector()
     conexion = connector.create_engine()
     sesion = connector.create_session(conexion)
@@ -20,6 +31,17 @@ def get_products():
 
 @productsBlue.route('/products/{product}', methods=['GET'])
 def get_product(product):
+    """
+    Function to define GET especific product endpoint.
+
+    params
+    product: product_name to search for
+    body
+    -
+
+    returns
+     - resp: JSON formatted answered query.
+    """
     connector = AuroraConector()
     conexion = connector.create_engine()
 
@@ -34,6 +56,21 @@ def get_product(product):
 
 @productsBlue.route('/products', methods=['POST'])
 def post_product():
+    """
+    Function to define POST product endpoint.
+
+    params
+    - 
+    body, JSON:
+    {
+        "product_name":String,
+        "price":Numeric,
+        "unit_measure_id": FOREIGN KEY(int)
+    }
+
+    returns
+     - rsp: rsp dict object. 
+    """
 
     product_json = productsBlue.current_request.json_body
     product = Products(**product_json)
@@ -57,6 +94,18 @@ def post_product():
 
 @productsBlue.route('/products/{product}', methods=['DELETE'])
 def delete_product(product):
+    """
+    Function to define DELETE especific product endpoint.
+
+    params
+    product: product to delete.
+
+    body:
+    - 
+
+    returns
+     - rsp: rsp dict object. 
+    """
     connector = AuroraConector()
     conexion = connector.create_engine()
 
@@ -76,6 +125,21 @@ def delete_product(product):
 
 @productsBlue.route('/products/{product}', methods=['PATCH'])
 def patch_product(product):
+    """
+    Function to define PATCH product endpoint.
+
+    params
+    product: product to update.
+    
+    body, JSON:
+    {
+        "price": OPTIONAL Numeric,
+        "unit_measure_id": OPTIONAL int
+    }
+
+    returns
+     - rsp: rsp dict object. 
+    """
     connector = AuroraConector()
     conexion = connector.create_engine()
 

@@ -4,10 +4,27 @@ from chalicelib.models.models import UnitMeasure
 from chalicelib.helpers.AuroraConector import AuroraConector
 from sqlalchemy import select, delete, update
 
+"""
+File to manage each measure routes.
+Due to blueprint defined in app.py endpoints are:
+
+/measures/*
+"""
 unitMeasuresBlue = Blueprint(__name__)
 
 @unitMeasuresBlue.route('/unit_measures', methods=['GET'])
 def get_unit_measures():
+    """
+    Function to define GET measures endpoint.
+
+    params
+    -
+    body
+    -
+
+    returns
+     - resp: select JSON formatted answered query.
+    """
     connector = AuroraConector()
     conexion = connector.create_engine()
     sesion = connector.create_session(conexion)
@@ -21,6 +38,17 @@ def get_unit_measures():
 
 @unitMeasuresBlue.route('/unit_measures/{measure_id}', methods=['GET'])
 def get_unit_measures_id(measure_id):
+    """
+    Function to define GET especific measure endpoint.
+
+    params
+    measure_id: measure_id to search for
+    body
+    -
+
+    returns
+     - resp: JSON formatted answered query.
+    """
     connector = AuroraConector()
     conexion = connector.create_engine()
 
@@ -35,7 +63,20 @@ def get_unit_measures_id(measure_id):
 
 @unitMeasuresBlue.route('/unit_measures', methods=['POST'])
 def post_unit_measures():
+    """
+    Function to define POST measure endpoint.
 
+    params
+    - 
+    body, JSON:
+    {
+        "unit_measure_id": int,
+        "measure_name": String
+    }
+
+    returns
+     - rsp: rsp dict object. 
+    """
     unit_as_json = unitMeasuresBlue.current_request.json_body
     unit = UnitMeasure(**unit_as_json)
 
@@ -58,6 +99,18 @@ def post_unit_measures():
 
 @unitMeasuresBlue.route('/unit_measures/{measure_id}', methods=['DELETE'])
 def delete_unit_measures(measure_id):
+    """
+    Function to define DELETE especific measure endpoint.
+
+    params
+    measure_id: measure_id to delete.
+
+    body:
+    - 
+
+    returns
+     - rsp: rsp dict object. 
+    """
     connector = AuroraConector()
     conexion = connector.create_engine()
 
@@ -77,6 +130,20 @@ def delete_unit_measures(measure_id):
 
 @unitMeasuresBlue.route('/unit_measures/{measure_id}', methods=['PATCH'])
 def patch_unit_measures(measure_id):
+    """
+    Function to define PATCH especific measure endpoint.
+
+    params
+    measure_id: measure_id to update.
+    
+    body, JSON:
+    {
+        "measure_name": String
+    }
+
+    returns
+     - rsp: rsp dict object. 
+    """
     connector = AuroraConector()
     conexion = connector.create_engine()
 
